@@ -150,6 +150,14 @@
           <button type="submit" class="btn btn-primary mt-3">Tải Lên</button>
         </form>
       </div>
+      <!-- Google Drive Links -->
+      <div>
+        <h3>Liên kết Bộ Đề Thi Thử:</h3>
+        <ul>
+          <li><a href="https://drive.google.com/drive/folders/1cH126wmXbtp8QdzMHgDx_i3NqyMHRlGh?usp=drive_link" target="_blank">Bộ Đề Thi Thử 1</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1JCufFcEB8lQCFsn1aFV1YcttWu9_S8Vi?usp=drive_link" target="_blank">Bộ Đề Thi Thử 2</a></li>
+        </ul>
+      </div>
     </div>
 
     <footer>
@@ -172,7 +180,7 @@
           return;
         }
 
-        accountName.textContent = `(${currentUser})`;
+        accountName.textContent = (${currentUser});
         accountName.style.display = "inline";
         logoutLink.style.display = "inline";
         loginLink.style.display = "none";
@@ -188,4 +196,5 @@
     </script>
   </body>
 </html>
+
 
