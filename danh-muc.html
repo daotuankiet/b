@@ -118,6 +118,11 @@
         bottom: 0;
         width: 100%;
       }
+
+      .google-drive-link {
+        margin-top: 30px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -175,7 +180,7 @@
           return;
         }
 
-        accountName.textContent = `(${currentUser})`;
+        accountName.textContent = currentUser;  // Đã sửa lại
         accountName.style.display = "inline";
         logoutLink.style.display = "inline";
         loginLink.style.display = "none";
