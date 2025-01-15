@@ -130,8 +130,6 @@
         <a href="tai-lieu-on-tap.html">Tài Liệu Ôn Tập</a>
         <a href="dang-ky.html" id="registerLink">Đăng Ký</a>
         <a href="dang-nhap.html" id="loginLink">Đăng Nhập</a>
-        <a href="faq.html">Câu Hỏi Thường Gặp</a>
-        <a href="lien-he.html">Liên Hệ</a>
         <span id="accountName"></span>
         <span id="logoutLink">Đăng Xuất</span>
       </nav>
@@ -150,13 +148,17 @@
           <button type="submit" class="btn btn-primary mt-3">Tải Lên</button>
         </form>
       </div>
-      <!-- Google Drive Links -->
-      <div>
-        <h3>Liên kết Bộ Đề Thi Thử:</h3>
-        <ul>
-          <li><a href="https://drive.google.com/drive/folders/1cH126wmXbtp8QdzMHgDx_i3NqyMHRlGh?usp=drive_link" target="_blank">Bộ Đề Thi Thử 1</a></li>
-          <li><a href="https://drive.google.com/drive/folders/1JCufFcEB8lQCFsn1aFV1YcttWu9_S8Vi?usp=drive_link" target="_blank">Bộ Đề Thi Thử 2</a></li>
-        </ul>
+
+      <!-- Links to Google Drive Folders -->
+      <div class="upload-section">
+        <h3>Truy Cập Bộ Đề Thi Thử trên Google Drive</h3>
+        <a href="https://drive.google.com/drive/folders/1JCufFcEB8lQCFsn1aFV1YcttWu9_S8Vi?usp=drive_link" target="_blank" class="btn btn-link">
+          Truy Cập Bộ Đề Thi Thử 1
+        </a>
+        <br />
+        <a href="https://drive.google.com/drive/folders/1cH126wmXbtp8QdzMHgDx_i3NqyMHRlGh?usp=drive_link" target="_blank" class="btn btn-link">
+          Truy Cập Bộ Đề Thi Thử 2
+        </a>
       </div>
     </div>
 
@@ -180,7 +182,7 @@
           return;
         }
 
-        accountName.textContent = (${currentUser});
+        accountName.textContent = `(${currentUser})`;
         accountName.style.display = "inline";
         logoutLink.style.display = "inline";
         loginLink.style.display = "none";
@@ -196,5 +198,3 @@
     </script>
   </body>
 </html>
-
-
