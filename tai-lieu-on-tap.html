@@ -13,28 +13,28 @@
       rel="stylesheet"
     />
     <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-      }
-
+      /* Toàn cục */
       body {
         font-family: "Roboto", sans-serif;
-        background-color: #fafafa;
+        background-color: #f9f9f9;
         color: #2e2e2e;
+        margin: 0;
+        padding: 0;
         display: flex;
         flex-direction: column;
+        min-height: 100vh;
       }
 
       header {
         background-color: #ffffff;
-        color: #2e2e2e;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 20px 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        position: sticky;
+        top: 0;
       }
 
       header .logo {
@@ -44,53 +44,79 @@
       }
 
       header nav a {
+        margin: 0 15px;
         color: #2e2e2e;
-        margin: 0 20px;
         font-size: 16px;
         text-decoration: none;
         font-weight: 500;
+        transition: color 0.3s ease;
       }
 
       header nav a:hover {
         color: #4a90e2;
       }
 
+      #accountName,
       #logoutLink {
         display: none;
-        cursor: pointer;
         font-weight: 500;
       }
 
-      #accountName {
-        display: none;
+      #logoutLink {
+        cursor: pointer;
         margin-left: 10px;
-        font-weight: 500;
-        color: #4a90e2;
+        color: #dc3545;
+      }
+
+      #logoutLink:hover {
+        text-decoration: underline;
       }
 
       .container {
-        padding-top: 50px;
-        padding-bottom: 50px;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 50px 20px;
         flex-grow: 1;
+      }
+
+      h1 {
+        font-size: 36px;
+        color: #4a90e2;
+        margin-bottom: 40px;
+        text-align: center;
       }
 
       .upload-section {
         background-color: white;
         padding: 30px;
-        border-radius: 8px;
+        border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
+        transition: transform 0.2s ease;
+      }
+
+      .upload-section:hover {
+        transform: translateY(-3px);
       }
 
       .upload-section h3 {
         font-size: 24px;
         margin-bottom: 20px;
-        font-weight: 600;
-        color: #2e2e2e;
+        color: #333;
+        text-align: center;
       }
 
       .upload-section form input[type="file"] {
+        border: 2px dashed #4a90e2;
+        padding: 20px;
+        border-radius: 6px;
+        background-color: #f1faff;
         margin-bottom: 20px;
+        transition: border-color 0.3s ease;
+      }
+
+      .upload-section form input[type="file"]:hover {
+        border-color: #357ab7;
       }
 
       .upload-section form button {
@@ -108,20 +134,52 @@
         background-color: #357ab7;
       }
 
+      .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-success:hover {
+        background-color: #218838;
+      }
+
       footer {
         background-color: #ffffff;
-        color: #2e2e2e;
         text-align: center;
         padding: 20px;
         font-size: 14px;
-        box-shadow: none;
-        position: relative;
-        bottom: 0;
-        width: 100%;
+        border-top: 1px solid #e0e0e0;
+        margin-top: auto;
+      }
+
+      /* Toast thông báo */
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #4a90e2;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
       }
     </style>
   </head>
   <body>
+    <!-- Header -->
     <header>
       <div class="logo">Focus10</div>
       <nav>
@@ -136,6 +194,7 @@
       </nav>
     </header>
 
+    <!-- Nội dung -->
     <div class="container">
       <h1>Tài Liệu Ôn Tập</h1>
       <div class="upload-section">
@@ -149,7 +208,7 @@
           <button type="submit" class="btn btn-primary mt-3">Tải Lên</button>
         </form>
       </div>
-      <div class="mt-4">
+      <div class="mt-4 text-center">
         <a
           href="https://drive.google.com/drive/folders/1ELtN04vGx7LA8V6Pn248ImJspxS_--tp?usp=drive_link"
           target="_blank"
@@ -160,12 +219,14 @@
       </div>
     </div>
 
+    <!-- Footer -->
     <footer>
       <p>&copy; 2025 Focus10. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Toast -->
+    <div class="toast" id="toast">Đăng nhập thành công!</div>
+
     <script>
       function checkLoginStatus() {
         const currentUser = localStorage.getItem("currentUser");
@@ -173,6 +234,7 @@
         const logoutLink = document.getElementById("logoutLink");
         const loginLink = document.getElementById("loginLink");
         const registerLink = document.getElementById("registerLink");
+        const toast = document.getElementById("toast");
 
         if (!currentUser) {
           alert("Bạn cần đăng nhập để truy cập trang này.");
@@ -185,6 +247,11 @@
         logoutLink.style.display = "inline";
         loginLink.style.display = "none";
         registerLink.style.display = "none";
+
+        // Hiển thị toast khi đăng nhập thành công
+        toast.textContent = `Chào mừng, ${currentUser}!`;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
 
         logoutLink.addEventListener("click", function () {
           localStorage.removeItem("currentUser");
