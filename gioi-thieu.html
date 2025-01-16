@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Giới Thiệu - Focus10</title>
+    <title>Giới thiệu - Focus10</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
@@ -16,13 +16,13 @@
       /* Body and layout setup */
       body {
         font-family: "Roboto", sans-serif;
-        background-color: #fafafa;
-        color: #2e2e2e;
+        background-color: #f4f7fb;
+        color: #4a4a4a;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+        min-height: 100vh;
       }
 
       /* Header styling */
@@ -39,7 +39,7 @@
       header .logo {
         font-size: 28px;
         font-weight: 700;
-        color: #4a90e2;
+        color: #007bff;
       }
 
       header nav a {
@@ -50,35 +50,47 @@
       }
 
       header nav a:hover {
-        color: #4a90e2;
+        color: #007bff;
       }
 
       /* Container setup */
       .container {
-        padding-top: 50px;
+        padding-top: 70px;
         padding-bottom: 50px;
-        flex-grow: 1; /* Allow content to take remaining space */
+        flex-grow: 1;
+        max-width: 900px;
+        margin: 0 auto;
       }
 
       /* Section Title styling */
       .section-title {
-        font-size: 32px;
-        font-weight: 600;
-        margin-bottom: 30px;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 40px;
+        text-align: center;
         color: #2e2e2e;
       }
 
       /* Section content styling */
       .section-content {
         font-size: 18px;
-        line-height: 1.6;
-        color: #333;
+        line-height: 1.8;
+        color: #4a4a4a;
+        text-align: justify;
+      }
+
+      .section-content p {
+        margin-bottom: 20px;
+      }
+
+      .section-content strong {
+        color: #007bff;
       }
 
       /* Footer styling */
       footer {
         background-color: #ffffff;
-        color: #2e2e2e;
+        color: #4a4a4a;
         text-align: center;
         padding: 20px;
         font-size: 14px;
@@ -86,6 +98,34 @@
         position: relative;
         bottom: 0;
         width: 100%;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      /* Add responsiveness */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        header .logo {
+          font-size: 24px;
+        }
+
+        header nav a {
+          margin: 10px 0;
+        }
+
+        .container {
+          padding-top: 50px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
       }
     </style>
   </head>
@@ -102,35 +142,34 @@
       <div class="section-title">Giới Thiệu Về Focus10</div>
       <div class="section-content">
         <p>
-          Focus10 là nền tảng hỗ trợ học sinh ôn thi hiệu quả với bộ đề thi, tài
-          liệu ôn tập, và các bộ đề thi thử đa dạng. Chúng tôi cung cấp cho các
-          bạn học sinh các công cụ để ôn luyện, cải thiện kỹ năng và chuẩn bị
-          tốt nhất cho các kỳ thi quan trọng.
+          <strong>Focus10</strong> ra đời nhằm hỗ trợ học sinh ôn tập hiệu quả
+          cho kỳ thi tuyển sinh vào lớp 10. Dưới đây là những điểm nổi bật của
+          Focus10:
         </p>
         <p>
-          Chúng tôi cam kết cung cấp những tài liệu, đề thi, và bộ đề thi thử
-          chất lượng, giúp các bạn tự tin hơn khi bước vào phòng thi. Tại
-          Focus10, chúng tôi luôn đồng hành cùng bạn trong suốt hành trình học
-          tập của bạn.
+          <strong>📚 Nội dung Phong Phú và Đa Dạng:</strong> Focus10 cung cấp tài
+          liệu ôn tập cho các môn chính như Toán, Ngữ văn, Tiếng Anh, cùng các
+          môn phụ khác. Tất cả tài liệu được biên soạn kỹ lưỡng, từ cơ bản đến
+          nâng cao, giúp học sinh rèn luyện toàn diện.
         </p>
         <p>
-          Mục Tiêu: Website Focus10 được thiết kế để cung cấp tài liệu ôn thi
-          tuyển sinh lớp 10 chất lượng, giúp học sinh ôn tập hiệu quả, đặc biệt
-          là môn Tiếng Anh. Website cung cấp các tài liệu phong phú và các công
-          cụ hỗ trợ học tập để học sinh dễ dàng tiếp cận và nâng cao kỹ năng của
-          mình. Điểm Nhấn: Đề Thi: Cung cấp các bộ đề thi thử với đa dạng chủ đề
-          và cấu trúc bài thi, giúp học sinh làm quen với định dạng đề thi và
-          luyện tập hiệu quả. Bài Giải Chi Tiết: Các bài giải chi tiết giúp học
-          sinh hiểu rõ từng bước giải quyết vấn đề và nắm bắt phương pháp làm
-          bài thi chính xác. Mẹo Học Tập: Các mẹo học tập và chiến lược ôn thi
-          sẽ giúp học sinh tối ưu hóa thời gian học, tăng cường sự tự tin khi
-          đối mặt với các kỳ thi. Tài Liệu Tham Khảo: Cung cấp tài liệu tham
-          khảo đa dạng, bao gồm sách, bài giảng, và video học để học sinh có
-          thêm nguồn tài liệu phong phú phục vụ cho quá trình ôn tập.
+          <strong>🌟 Phù Hợp Với Mọi Đối Tượng Học Sinh:</strong> Dù bạn có học lực
+          trung bình hay xuất sắc, Focus10 đều có tài liệu ôn tập phù hợp với năng
+          lực của bạn, giúp bạn tiến bộ mỗi ngày.
         </p>
         <p>
-          Cảm ơn bạn đã tin tưởng và lựa chọn Focus10 làm người bạn đồng hành
-          trong việc chuẩn bị cho kỳ thi sắp tới!
+          <strong>🔄 Cập Nhật Thường Xuyên và Bám Sát Chương Trình Học:</strong> Tài
+          liệu của Focus10 luôn được cập nhật mới nhất, bám sát chương trình học,
+          đảm bảo học sinh luôn được trang bị kiến thức đầy đủ và kịp thời.
+        </p>
+        <p>
+          <strong>💰 Tiết Kiệm Thời Gian và Chi Phí:</strong> Với Focus10, học sinh
+          không cần tốn nhiều thời gian và tiền bạc để tìm kiếm tài liệu ôn tập.
+          Tất cả đều được tập hợp trong một nền tảng duy nhất.
+        </p>
+        <p>
+          <strong>Focus10 - Chìa khóa mở cánh cửa tương lai, đồng hành cùng bạn
+            trên con đường chinh phục kỳ thi tuyển sinh vào lớp 10.</strong>
         </p>
       </div>
     </div>
