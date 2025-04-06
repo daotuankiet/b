@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Gamble Game</title>
+  <title>Ultimate Gamble Game</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -15,60 +15,94 @@
     }
     h1 {
       color: gold;
+      text-shadow: 0 0 10px gold;
     }
     .game-box {
-      background: #222;
+      background: rgba(0, 0, 0, 0.8);
       padding: 2rem;
-      border-radius: 10px;
-      width: 300px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 400px;
       text-align: center;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+      animation: fadeIn 1s ease-in-out;
     }
     input, button {
       margin: 0.5rem 0;
-      padding: 0.5rem;
+      padding: 0.75rem;
       width: 100%;
-      border-radius: 5px;
+      border-radius: 8px;
       border: none;
+      font-size: 1rem;
     }
     button {
       background: gold;
       color: #000;
       font-weight: bold;
       cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
     }
     #result {
       margin-top: 1rem;
       font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .status {
+      margin: 1rem 0;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
 
-  <h1>🎲 Gamble Game</h1>
+  <h1>🎰 Ultimate Gamble Game</h1>
   <div class="game-box">
-    <p>Balance: $<span id="balance">100</span></p>
-    <input type="number" id="bet" placeholder="Enter bet amount" />
+    <p class="status">💵 Balance: $<span id="balance">100</span></p>
+    <p class="status">🏆 High Score: $<span id="highScore">100</span></p>
+    <input type="number" id="bet" placeholder="Enter your bet" />
     <input type="number" id="number" placeholder="Pick a number (1-5)" />
     <button onclick="play()">Play</button>
+    <button onclick="resetGame()">🔄 Reset Game</button>
     <p id="result"></p>
   </div>
 
+  <!-- Sound Effects -->
+  <audio id="winSound" src="https://freesound.org/data/previews/341/341695_3248244-lq.mp3"></audio>
+  <audio id="loseSound" src="https://freesound.org/data/previews/198/198841_2859979-lq.mp3"></audio>
+  <audio id="gameOverSound" src="https://freesound.org/data/previews/331/331912_3248244-lq.mp3"></audio>
+
   <script>
-    let balance = 100;
+    let balance = parseInt(localStorage.getItem('balance')) || 100;
+    let highScore = parseInt(localStorage.getItem('highScore')) || 100;
+
+    const balanceEl = document.getElementById('balance');
+    const highScoreEl = document.getElementById('highScore');
+    const resultEl = document.getElementById('result');
+
+    const winSound = document.getElementById('winSound');
+    const loseSound = document.getElementById('loseSound');
+    const gameOverSound = document.getElementById('gameOverSound');
+
+    balanceEl.textContent = balance;
+    highScoreEl.textContent = highScore;
 
     function play() {
       const bet = parseInt(document.getElementById('bet').value);
       const chosen = parseInt(document.getElementById('number').value);
-      const result = document.getElementById('result');
 
       if (isNaN(bet) || bet <= 0 || bet > balance) {
-        result.textContent = "❌ Invalid bet!";
+        resultEl.textContent = "❌ Invalid bet!";
         return;
       }
 
       if (isNaN(chosen) || chosen < 1 || chosen > 5) {
-        result.textContent = "❌ Pick a number between 1 and 5!";
+        resultEl.textContent = "❌ Choose a number between 1 and 5!";
         return;
       }
 
@@ -76,18 +110,36 @@
 
       if (chosen === winning) {
         balance += bet;
-        result.textContent = `🎉 You won! Winning number was ${winning}. +$${bet}`;
+        resultEl.textContent = `🎉 You won! Number was ${winning}. +$${bet}`;
+        winSound.play();
       } else {
         balance -= bet;
-        result.textContent = `💸 You lost. Winning number was ${winning}. -$${bet}`;
+        resultEl.textContent = `💸 You lost. Number was ${winning}. -$${bet}`;
+        loseSound.play();
       }
 
-      document.getElementById('balance').textContent = balance;
+      if (balance > highScore) {
+        highScore = balance;
+        localStorage.setItem('highScore', highScore);
+      }
+
+      localStorage.setItem('balance', balance);
+      balanceEl.textContent = balance;
+      highScoreEl.textContent = highScore;
 
       if (balance <= 0) {
-        result.textContent += "\n💀 Game Over! You’re out of money.";
-        document.querySelector('button').disabled = true;
+        resultEl.textContent += "\n☠️ Game Over! You're broke.";
+        gameOverSound.play();
+        document.querySelector('button[onclick="play()"]').disabled = true;
       }
+    }
+
+    function resetGame() {
+      balance = 100;
+      localStorage.setItem('balance', balance);
+      balanceEl.textContent = balance;
+      resultEl.textContent = '';
+      document.querySelector('button[onclick="play()"]').disabled = false;
     }
   </script>
 
